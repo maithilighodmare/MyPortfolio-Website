@@ -1,0 +1,88 @@
+/* Hero Section */
+.home {
+  background: #fdf2f7; 
+  padding: 6rem 2rem 4rem;
+  margin-top: -30px;
+}
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12rem;
+  margin-left: 30px;
+}
+
+.home-text {
+  flex: 1;
+  text-align: center;
+}
+
+.home-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+}
+
+.home-text p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.social-links{
+ margin-left: 15px;
+  color: #6b5b95;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+
+.btn {
+  margin-top: 1.5rem;
+  background: #c2185b;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #a31549;
+}
+
+.home-image {
+  flex: 1;
+}
+
+.home-image img {
+  width: 500px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.footer-right {
+  display: flex;
+  gap: 20px; /* even spacing between icons */
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.footer-right a {
+  color: #333;        /* dark color */
+  font-size: 2rem;    /* larger size for icons */
+  font-weight: bold;  /* makes icons appear bolder */
+  transition: color 0.3s;
+}
+
+
+.footer-right a:hover {
+  color: #ff6f91; 
+}

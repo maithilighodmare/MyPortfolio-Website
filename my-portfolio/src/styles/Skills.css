@@ -1,0 +1,87 @@
+/* Section Base */
+.skills {
+  background: #fdf2f7; /* light pastel pink */
+  padding: 6rem 2rem;
+}
+
+.skills-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.skills-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Tabs */
+.skills-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: #f3e8ff; /* pastel lavender */
+  color: #4b5563;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #a78bfa; /* soft pastel violet */
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+}
+
+.tab-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Skills Items */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.skill-item {
+  background: #e0f2fe; /* pastel blue */
+  color: #0369a1;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.skill-item:hover {
+  background: #7dd3fc; /* brighter pastel blue */
+  color: #fff;
+  transform: scale(1.07);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
