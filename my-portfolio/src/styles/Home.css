@@ -1,8 +1,9 @@
 /* Hero Section */
 .home {
-  background: #fdf2f7; 
-  padding: 6rem 2rem 4rem;
-  margin-top: -30px;
+  background: #fdf2f7;
+  padding: 7rem 2rem 4rem;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .home-container {
@@ -11,29 +12,27 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12rem;
-  margin-left: 30px;
+  gap: 1.4rem;
+  justify-content: center;
 }
 
 .home-text {
   flex: 1;
-  text-align: center;
+  text-align: left;
+  padding-left: 0;
+  order: 2;
 }
 
 .home-text h1 {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: bold;
   color: #333;
-  line-height: 1.4;
 }
 
 .home-text p {
-  margin-top: 1rem;
   font-size: 1rem;
   color: #555;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 520px;
 }
 .social-links{
  margin-left: 15px;
@@ -52,37 +51,96 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
   background: #a31549;
 }
 
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.6;
+  animation: home-btn-ripple 1.6s ease-out infinite;
+}
+
+@keyframes home-btn-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(16);
+    opacity: 0;
+  }
+}
+
 .home-image {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  order: 1;
 }
 
 .home-image img {
-  width: 500px;
+  width: 100%;
+  max-width: 440px;
   height: auto;
   border-radius: 20px;
   object-fit: cover;
 }
-.footer-right {
+.icons {
   display: flex;
-  gap: 20px; /* even spacing between icons */
-  justify-content: center;
+  gap: 20px;
+  justify-content: flex-start;
   margin-top: 1rem;
 }
 
-.footer-right a {
-  color: #333;        /* dark color */
-  font-size: 2rem;    /* larger size for icons */
-  font-weight: bold;  /* makes icons appear bolder */
+.icons a {
+  color: #333;
+  font-size: 2rem;
+  font-weight: bold;
   transition: color 0.3s;
 }
 
 
 .footer-right a:hover {
-  color: #ff6f91; 
+  color: #ff6f91;
+}
+
+@media (max-width: 900px) {
+  .home-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .home-text {
+    text-align: center;
+  }
+
+  .icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .home {
+    padding: 6rem 1.2rem 3.5rem;
+  }
+
+  .home-text h1 {
+    font-size: 2.1rem;
+  }
 }

@@ -6,37 +6,44 @@ const categories = [
   "Frontend",
   "Backend",
   "Database",
-  "Cloud Computing",
+  "Java",
+  "Other",
 ];
 
+const iconBase = "https://cdn.simpleicons.org";
 const skillsData = [
-  { name: "Tailwind CSS", category: "Frontend" },
-  { name: "JavaScript", category: "Frontend" },
-  { name: "React", category: "Frontend" },
-  { name: "UI/UX", category: "Frontend" },
-  { name: "HTML", category: "Frontend" },
+  { name: "Tailwind CSS", category: "Frontend", icon: `${iconBase}/tailwindcss` },
+  { name: "JavaScript", category: "Frontend", icon: `${iconBase}/javascript` },
+  { name: "React", category: "Frontend", icon: `${iconBase}/react` },
+  { name: "UI/UX", category: "Frontend", icon: `${iconBase}/figma` },
+  { name: "HTML", category: "Frontend", icon: `${iconBase}/html5` },
+  { name: "Bootstrap", category: "Frontend", icon: `${iconBase}/bootstrap` },
+  { name: "React Native", category: "Frontend", icon: `${iconBase}/react` },
 
-  { name: "Java", category: "Backend" },
-  { name: "Node.js", category: "Backend" },
-  { name: "Spring Boot", category: "Backend" },
-  { name: "REST APIs", category: "Backend" },
-  { name: "Hibernate", category: "Backend" },
-  { name: "JPA", category: "Backend" },
+  {
+    name: "Java",
+    category: "Backend",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  },
+  { name: "Node.js", category: "Backend", icon: `${iconBase}/nodedotjs` },
+  { name: "Express.js", category: "Backend", icon: `${iconBase}/express` },
+  { name: "REST APIs", category: "Backend", icon: `${iconBase}/postman` },
 
-  { name: "MySQL", category: "Database" },
-  { name: "Oracle DB", category: "Database" },
+  { name: "MySQL", category: "Database", icon: `${iconBase}/mysql` },
+  { name: "MongoDB", category: "Database", icon: `${iconBase}/mongodb` },
+  { name: "Firebase", category: "Database", icon: `${iconBase}/firebase` },
 
-  { name: "AWS", category: "Cloud Computing" },
-  { name: "Azure", category: "Cloud Computing" },
-  { name: "Google Cloud Platform", category: "Cloud Computing" },
-  { name: "Docker", category: "Cloud Computing" },
-  { name: "Kubernetes", category: "Cloud Computing" },
-  { name: "Terraform", category: "Cloud Computing" },
-  { name: "Jenkins", category: "Cloud Computing" },
-  { name: "CI/CD pipelines", category: "Cloud Computing" },
-  { name: "Firebase", category: "Cloud Computing" },
-  { name: "Operating Systems", category: "Cloud Computing" },
-  { name: "MATLAB", category: "Cloud Computing" },
+  { name: "Spring Boot", category: "Java", icon: `${iconBase}/springboot` },
+  { name: "Hibernate", category: "Java", icon: `${iconBase}/hibernate` },
+  { name: "Maven", category: "Java", icon: `${iconBase}/apachemaven` },
+
+  { name: "Git", category: "Other", icon: `${iconBase}/git` },
+  { name: "GitHub", category: "Other", icon: `${iconBase}/github` },
+  {
+    name: "Canva",
+    category: "Other",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg",
+  },
 ];
 
 const Skills = () => {
@@ -48,7 +55,7 @@ const Skills = () => {
       : skillsData.filter((skill) => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="skills">
+    <section className="skills">
       <div className="skills-container">
         <h2 className="skills-title">Skills Section</h2>
 
@@ -75,6 +82,13 @@ const Skills = () => {
                 animationDelay: `${index * 0.08}s`, // stagger animation
               }}
             >
+              <img
+                className="skill-icon"
+                src={skill.icon}
+                alt={`${skill.name} logo`}
+                loading="lazy"
+                decoding="async"
+              />
               {skill.name}
             </span>
           ))}

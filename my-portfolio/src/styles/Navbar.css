@@ -1,4 +1,3 @@
-/* Navbar Styling */
 .navbar {
   width: 100%;
   background: #fff;
@@ -21,13 +20,14 @@
 .nav-logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #c2185b; /* pinkish brand color */
+  color: #c2185b;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
+  transition: all 0.5s ease;
 }
 
 .nav-links li a {
@@ -40,4 +40,47 @@
 
 .nav-links li a:hover {
   color: #c2185b;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #444;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 99;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-links li a {
+    font-size: 1.5rem;
+  }
 }

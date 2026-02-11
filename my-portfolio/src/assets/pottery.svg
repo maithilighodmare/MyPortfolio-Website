@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Pottery icon">
+  <rect width="128" height="128" rx="24" fill="#fff4ea"/>
+  <path d="M54 24c0 6-3 9-7 12-7 5-11 12-11 20 0 11 8 18 28 18s28-7 28-18c0-8-4-15-11-20-4-3-7-6-7-12H54z" fill="#d49b6a"/>
+  <path d="M44 70h40v12c0 7-3 14-7 20-4 6-8 11-13 16-5-5-9-10-13-16-4-6-7-13-7-20V70z" fill="#c8824c"/>
+  <path d="M43 75c7 5 17 8 21 8s14-3 21-8" fill="none" stroke="#8a5635" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 95c4 2 8 3 14 3s10-1 14-3" fill="none" stroke="#8a5635" stroke-width="4" stroke-linecap="round"/>
+</svg>
