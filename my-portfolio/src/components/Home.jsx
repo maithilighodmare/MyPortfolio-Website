@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
 import "../styles/Home.css";
 import me2 from "../assets/me2.png";
+import resumePdf from "../assets/Maithili_Ghodmare 2025.pdf";
+import Toast from "./Toast";
 
 const Home = () => {
+  const [toast, setToast] = useState({ message: "", type: "success" });
+
+  useEffect(() => {
+    if (!toast.message) {
+      return undefined;
+    }
+
+    const timer = setTimeout(() => {
+      setToast({ message: "", type: "success" });
+    }, 2600);
+
+    return () => clearTimeout(timer);
+  }, [toast.message]);
+
+  const handleResumeDownload = (event) => {
+    const confirmed = window.confirm(
+      "Do you want to download Maithili_Ghodmare2025.pdf?"
+    );
+
+    if (!confirmed) {
+      event.preventDefault();
+      return;
+    }
+
+    setToast({ message: "Resume download started.", type: "success" });
+  };
+
   return (
     <section className="home">
       <div className="home-container">
@@ -40,9 +69,19 @@ const Home = () => {
               <FaGithub />
             </a>
           </div>
-          <a className="btn" href="#about">
-            Learn More
-          </a>
+          <div className="home-actions">
+            <a className="btn" href="#about">
+              Learn More
+            </a>
+            <a
+              className="btn btn-secondary"
+              href={resumePdf}
+              download="Maithili_Ghodmare2025.pdf"
+              onClick={handleResumeDownload}
+            >
+              Download Resume
+            </a>
+          </div>
         </div>
 
         {/* Right Image */}
@@ -50,6 +89,11 @@ const Home = () => {
           <img src={me2} alt="Profile" decoding="async" />
         </div>
       </div>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        onClose={() => setToast({ message: "", type: "success" })}
+      />
     </section>
   );
 };

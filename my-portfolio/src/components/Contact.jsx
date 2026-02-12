@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "../styles/Contact.css";
+import Toast from "./Toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,19 @@ const Contact = () => {
   });
   const [status, setStatus] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const [toast, setToast] = useState({ message: "", type: "success" });
+
+  useEffect(() => {
+    if (!toast.message) {
+      return undefined;
+    }
+
+    const timer = setTimeout(() => {
+      setToast({ message: "", type: "success" });
+    }, 2600);
+
+    return () => clearTimeout(timer);
+  }, [toast.message]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,9 +50,11 @@ const Contact = () => {
         }
       );
       setStatus("Message sent successfully.");
+      setToast({ message: "Email sent successfully.", type: "success" });
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch {
       setStatus("Failed to send. Please try again.");
+      setToast({ message: "Failed to send email.", type: "error" });
     } finally {
       setIsSending(false);
     }
@@ -98,6 +114,11 @@ const Contact = () => {
         </button>
         {status ? <p className="contact-status">{status}</p> : null}
       </form>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        onClose={() => setToast({ message: "", type: "success" })}
+      />
     </section>
   );
 };

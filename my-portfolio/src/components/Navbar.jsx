@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -6,6 +6,34 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
 
   return (
     <nav className="navbar">
@@ -66,6 +94,14 @@ const Navbar = () => {
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
+        {menuOpen ? (
+          <button
+            type="button"
+            className="nav-backdrop"
+            aria-label="Close menu overlay"
+            onClick={() => setMenuOpen(false)}
+          />
+        ) : null}
       </div>
     </nav>
   );

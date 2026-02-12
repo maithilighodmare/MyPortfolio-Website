@@ -119,6 +119,28 @@
   color: #ff6f91;
 }
 
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.home-actions .btn {
+  margin-top: 1.2rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #c2185b;
+  border: 1px solid #c2185b;
+}
+
+.btn-secondary:hover {
+  background: #fce4ee;
+  color: #a31549;
+}
+
 @media (max-width: 900px) {
   .home-container {
     flex-direction: column;
@@ -131,6 +153,10 @@
   }
 
   .icons {
+    justify-content: center;
+  }
+
+  .home-actions {
     justify-content: center;
   }
 }
