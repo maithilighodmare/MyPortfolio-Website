@@ -40,6 +40,11 @@ const skillsData = [
   { name: "Git", category: "Other", icon: `${iconBase}/git` },
   { name: "GitHub", category: "Other", icon: `${iconBase}/github` },
   {
+    name: "MATLAB",
+    category: "Other",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg",
+  },
+  {
     name: "Canva",
     category: "Other",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg",

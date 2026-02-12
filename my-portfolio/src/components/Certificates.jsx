@@ -1,27 +1,41 @@
 import React, { useState } from "react";
 import "../styles/Certificates.css";
 import { FaCalendarAlt } from "react-icons/fa";
-import certImgA from "../assets/me3.jpeg";
-import certImgB from "../assets/me1.jpg";
+
+/* PDFs */
+import azurePdf from "../assets/certificates/Fundamentals of Azure AI services.pdf";
+import sqlPdf from "../assets/certificates/sql_basic certificate.pdf";
+import deltaPdf from "../assets/certificates/certificate-delta-batch-.pdf";
+import javaPdf from "../assets/certificates/Java-Certificate.pdf";
 
 const certificatesData = [
   {
-    title: "React Developer Certificate",
-    issuer: "Coursera",
-    date: "June 2024",
-    image: certImgA,
+    title: "Fundamentals of Azure AI Services",
+    issuer: "Microsoft Learn",
+    date: "February 2024",
+    description: "Covers Azure AI fundamentals, core services, and responsible AI concepts.",
+    file: azurePdf,
   },
   {
-    title: "Full-Stack Web Development",
-    issuer: "Udemy",
-    date: "March 2024",
-    image: certImgB,
+    title: "SQL Basic Certificate",
+    issuer: "HackerRank",
+    date: "2024",
+    description: "Validated core SQL querying skills, joins, and data retrieval basics.",
+    file: sqlPdf,
   },
   {
-    title: "JavaScript Mastery",
-    issuer: "freeCodeCamp",
-    date: "January 2024",
-    image: certImgA,
+    title: "Delta - Full Stack Web Development",
+    issuer: "Apna College",
+    date: "2024",
+    description: "Full stack training covering frontend, backend, and project workflows.",
+    file: deltaPdf,
+  },
+  {
+    title: "Java Certification",
+    issuer: "One Roadmap",
+    date: "May 2025",
+    description: "Demonstrated Java fundamentals, OOP, and core API usage.",
+    file: javaPdf,
   },
 ];
 
@@ -41,35 +55,29 @@ const Certificates = () => {
 
   return (
     <section className="certificates-section">
-      <h2 className="certificates-title">My Certificates</h2>
+      <div className="certificates-header">
+        <p className="certificates-kicker">Proof of Work</p>
+        <h2 className="certificates-title">Certificates</h2>
+      </div>
+
       <div className="certificates-container">
         {certificatesData.map((cert, index) => (
-          <div
-            className="certificate-card"
-            key={index}
-            onClick={() => openModal(cert)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                openModal(cert);
-              }
-            }}
-          >
-            <img
-              src={cert.image}
-              alt={`${cert.title} certificate`}
-              className="certificate-image"
-              loading="lazy"
-              decoding="async"
-            />
+          <div className="certificate-card" key={index}>
             <div className="certificate-content">
+              <p className="certificate-chip">{cert.issuer}</p>
               <h3 className="certificate-title">{cert.title}</h3>
-              <p className="certificate-issuer">{cert.issuer}</p>
               <p className="certificate-date">
                 <FaCalendarAlt style={{ marginRight: "5px" }} />
                 {cert.date}
               </p>
+              <p className="certificate-desc">{cert.description}</p>
+              <button
+                className="certificate-open-btn"
+                type="button"
+                onClick={() => openModal(cert)}
+              >
+                View Certificate
+              </button>
             </div>
           </div>
         ))}
@@ -78,25 +86,23 @@ const Certificates = () => {
       {modalOpen && activeCert && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-back" onClick={closeModal}>
-              Back
-            </button>
-            <div className="modal-body">
-              <img
-                src={activeCert.image}
-                alt={activeCert.title}
-                className="modal-image"
-                decoding="async"
-              />
-              <div className="modal-details">
-                <h3>{activeCert.title}</h3>
-                <p className="modal-issuer">{activeCert.issuer}</p>
-                <p className="modal-date">
-                  <FaCalendarAlt style={{ marginRight: "6px" }} />
-                  {activeCert.date}
-                </p>
+            <div className="modal-head">
+              <div>
+                <p className="certificate-chip">{activeCert.issuer}</p>
+                <h3 className="modal-title">{activeCert.title}</h3>
               </div>
+              <button className="modal-back" onClick={closeModal}>
+                Close
+              </button>
             </div>
+
+            <iframe
+              src={`${activeCert.file}#toolbar=0&navpanes=0&scrollbar=0`}
+              title={activeCert.title}
+              className="certificate-pdf-full"
+              scrolling="no"
+              frameBorder="0"
+            />
           </div>
         </div>
       )}

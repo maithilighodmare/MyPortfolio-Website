@@ -6,9 +6,39 @@
 .projects-title {
   font-size: 2.5rem;
   color: #6b5b95;
-  margin-bottom: 50px;
+  margin-bottom: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+.projects-filters {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.filter-btn {
+  border: 1px solid #e6d8f2;
+  background: #fff;
+  color: #5b3f8e;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: #f6effa;
+}
+
+.filter-btn.active {
+  background: #c2185b;
+  color: #fff;
+  border-color: #c2185b;
 }
 
 .projects-container {
@@ -141,6 +171,10 @@
 
   .projects-title {
     margin-bottom: 32px;
+  }
+
+  .projects-filters {
+    margin-bottom: 24px;
   }
 
   .project-actions {

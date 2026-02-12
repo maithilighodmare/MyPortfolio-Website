@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Projects.css";
 import { FaEye, FaGithub } from "react-icons/fa";
-import planItImg from "../assets/PlanIt.png";
-import shivasImg from "../assets/shivas.png";
-import me3Img from "../assets/me3.jpeg";
+import planItImg from "../assets/project/planIt.png";
+import shivasImg from "../assets/project/shivas.png";
+import watchImg from "../assets/project/watch.png";
+import cricketImg from "../assets/project/cricket.png";
+import airbnbImg from "../assets/project/airbnb.png";
+import zerodhaImg from "../assets/project/zerodha.png";
+import drivingSchoolImg from "../assets/project/drivingschool.png";
+import neuroflexImg from "../assets/project/neuroflex.png";
+
+const projectCategories = ["All", "Websites", "Mobile App", "IOT", "Others"];
 
 const projectsData = [
   {
@@ -14,15 +21,7 @@ const projectsData = [
     description:
       "Mobile-first task manager with clean UI, reminders, and cloud sync for daily planning.",
     tech: ["React Native", "Firebase", "Expo"],
-  },
-  {
-    title: "Travel Blog Website",
-    image: me3Img,
-    live: "",
-    github: "",
-    description:
-      "A responsive travel blog layout with journal-style sections and clean visual hierarchy.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    category: "Mobile App",
   },
   {
     title: "Real-Time Mess Management System",
@@ -33,15 +32,118 @@ const projectsData = [
     description:
       "Operations dashboard for daily meals, inventory, and analytics with role-based access.",
     tech: ["MERN", "Material-UI", "Flask API", "JWT"],
+    category: "Websites",
+  },
+  {
+    title: "Luxetime Watch Store",
+    image: watchImg,
+    live: "https://lnkd.in/gDnv5Mvd",
+    github: "https://lnkd.in/g5V-MuSP",
+    description:
+      "Modern e-commerce platform for watches offering seamless shopping experience with clean UI and fast deployment.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    category: "Websites",
+  },
+  {
+    title: "Wick.Play - Cricket Tournaments Platform",
+    image: cricketImg,
+    live: "https://crickapp-wickplay.netlify.app/",
+    github: "",
+    description:
+      "Platform to create, manage, and join cricket tournaments with smooth navigation and efficient state management.",
+    tech: ["React.js", "Redux.js", "React Router", "JavaScript", "CSS", "HTML"],
+    category: "Websites",
+  },
+  {
+    title: "Airbnb Clone",
+    image: airbnbImg, // replace with actual image later
+    live: "", // add deployed link if available
+    github: "https://github.com/maithilighodmare/My-AirBNB-Clone", // add GitHub link
+    description:
+      "Full-stack Airbnb clone with property listings, authentication, booking system, and responsive UI.",
+    tech: ["MERN Stack", "JWT", "MongoDB", "Express", "React", "Node.js"],
+    category: "Websites",
+  },
+  {
+    title: "Zerodha Clone",
+    image: zerodhaImg,
+    live: "",
+    github: "https://github.com/maithilighodmare/My-Zerodha",
+    description:
+      "Stock trading platform UI inspired by Zerodha with dashboard, charts, portfolio tracking, and modern financial UI design.",
+    tech: ["React.js", "Chart.js", "Material UI", "Node.js"],
+    category: "Websites",
+  },
+  {
+    title: "Driving School Website",
+    image: drivingSchoolImg, // replace with actual image later
+    live: "",
+    github: "https://github.com/maithilighodmare/Driving-School-Website1",
+    description:
+      "Responsive driving school website with course details, booking form, instructor profiles, and contact integration.",
+    tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+    category: "Websites",
+  },
+
+  {
+    title: "NeuroFlex Mat - Smart Reflex Monitoring System",
+    image: neuroflexImg,
+    live: "",
+    github: "",
+    description:
+      "Patent-approved IoT-based healthcare system integrating sensor-enabled mats and mobile app for real-time rehabilitation monitoring.",
+    tech: [
+      "IoT",
+      "Embedded Systems",
+      "Android Development",
+      "Cloud Integration",
+    ],
+    category: "IOT",
+  },
+  {
+    title: "NeuroFlex Mat - Smart Reflex Monitoring System",
+    image: neuroflexImg,
+    live: "",
+    github: "",
+    description:
+      "Patent-approved IoT-based healthcare system integrating sensor-enabled mats and mobile app for real-time rehabilitation monitoring.",
+    tech: [
+      "IoT",
+      "Embedded Systems",
+      "Android Development",
+      "Cloud Integration",
+    ],
+    category: "Mobile App",
   },
 ];
 
 const Projects = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projectsData
+      : projectsData.filter((project) => project.category === activeCategory);
+
   return (
     <section className="projects-section">
       <h2 className="projects-title">My Projects</h2>
+
+      <div className="projects-filters">
+        {projectCategories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            className={`filter-btn ${activeCategory === category ? "active" : ""}`}
+            onClick={() => setActiveCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
       <div className="projects-container">
-        {projectsData.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <div className="project-card" key={index}>
             <div className="project-media">
               <img
