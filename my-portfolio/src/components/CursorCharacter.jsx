@@ -19,12 +19,10 @@ function Avatar() {
   useEffect(() => {
     const canvas = gl.domElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const coarsePointer = window.matchMedia("(pointer: coarse)");
     prefersReducedMotion.current = reducedMotion.matches;
-    if (reducedMotion.matches || coarsePointer.matches) return undefined;
+    if (reducedMotion.matches) return undefined;
 
-    const handlePointerMove = (event) => {
-      if (event.pointerType === "touch") return;
+    const updateTarget = (event) => {
       const rect = canvas.getBoundingClientRect();
       const x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
       const y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
@@ -32,17 +30,24 @@ function Avatar() {
       target.current.pitch = (0.5 - y) * 2 * THREE.MathUtils.degToRad(7);
     };
 
+    const handlePointerMove = (event) => updateTarget(event);
+    const handlePointerDown = (event) => updateTarget(event);
+
     const resetTarget = () => {
       target.current.yaw = 0;
       target.current.pitch = 0;
     };
 
+    canvas.addEventListener("pointerdown", handlePointerDown, {
+      passive: true,
+    });
     canvas.addEventListener("pointermove", handlePointerMove, {
       passive: true,
     });
     canvas.addEventListener("pointerleave", resetTarget);
     canvas.addEventListener("pointercancel", resetTarget);
     return () => {
+      canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("pointerleave", resetTarget);
       canvas.removeEventListener("pointercancel", resetTarget);
