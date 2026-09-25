@@ -9,6 +9,7 @@ import BeyondCode from "./components/BeyondCode";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Education from "./components/Education";
+import CursorCharacter from "./components/CursorCharacter";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
       <section id="home" className="reveal">
         <Home />
       </section>
+      <CursorCharacter />
       <section id="about" className="reveal">
         <About />
       </section>

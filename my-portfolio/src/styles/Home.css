@@ -21,18 +21,21 @@
   text-align: left;
   padding-left: 0;
   order: 2;
+  animation: home-content-enter 700ms 100ms both;
 }
 
 .home-text h1 {
   font-size: 2.6rem;
   font-weight: bold;
   color: #333;
+  animation: home-content-enter 650ms 180ms both;
 }
 
 .home-text p {
   font-size: 1rem;
   color: #555;
   max-width: 520px;
+  animation: home-content-enter 650ms 300ms both;
 }
 .social-links{
  margin-left: 15px;
@@ -50,7 +53,7 @@
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
   display: inline-block;
   position: relative;
@@ -61,29 +64,9 @@
   background: #a31549;
 }
 
-.btn::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0.6;
-  animation: home-btn-ripple 1.6s ease-out infinite;
-}
-
-@keyframes home-btn-ripple {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(16);
-    opacity: 0;
-  }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(194, 24, 91, 0.2);
 }
 
 .home-image {
@@ -91,6 +74,7 @@
   display: flex;
   justify-content: center;
   order: 1;
+  animation: home-image-enter 850ms 120ms both;
 }
 
 .home-image img {
@@ -99,19 +83,42 @@
   height: auto;
   border-radius: 20px;
   object-fit: cover;
+  animation: home-image-float 6s ease-in-out 1s infinite;
+  will-change: transform;
+}
+
+@keyframes home-content-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes home-image-enter {
+  from { opacity: 0; transform: translateX(24px) scale(0.97); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes home-image-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
 }
 .icons {
   display: flex;
   gap: 20px;
   justify-content: flex-start;
   margin-top: 1rem;
+  animation: home-content-enter 650ms 420ms both;
 }
 
 .icons a {
   color: #333;
   font-size: 2rem;
   font-weight: bold;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.25s;
+}
+
+.icons a:hover {
+  color: #c2185b;
+  transform: translateY(-4px) scale(1.08);
 }
 
 
@@ -124,6 +131,7 @@
   flex-wrap: wrap;
   gap: 0.8rem;
   align-items: center;
+  animation: home-content-enter 650ms 520ms both;
 }
 
 .home-actions .btn {
@@ -168,5 +176,23 @@
 
   .home-text h1 {
     font-size: 2.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-text,
+  .home-text h1,
+  .home-text p,
+  .icons,
+  .home-actions,
+  .home-image,
+  .home-image img {
+    animation: none;
+    will-change: auto;
+  }
+
+  .btn,
+  .icons a {
+    transition: none;
   }
 }
