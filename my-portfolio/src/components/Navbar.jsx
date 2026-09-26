@@ -36,9 +36,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main navigation">
       <div className="nav-container">
-        <div className="nav-logo">🌸Maithili Ghodmare</div>
+        <a className="nav-logo" href="#home" onClick={() => setMenuOpen(false)}>
+          <span className="nav-logo-flower" aria-hidden="true">✿</span>
+          <span>Maithili Ghodmare</span>
+        </a>
 
         <ul
           id="primary-navigation"
@@ -62,6 +65,11 @@ const Navbar = () => {
           <li>
             <a href="#projects" onClick={() => setMenuOpen(false)}>
               Projects
+            </a>
+          </li>
+          <li>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>
+              Experience
             </a>
           </li>
           <li>

@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Education from "./components/Education";
 import CursorCharacter from "./components/CursorCharacter";
+import Experience from "./components/Experience";
 
 function App() {
   useEffect(() => {
@@ -51,6 +52,7 @@ function App() {
       <section id="projects" className="reveal">
         <Projects />
       </section>
+      <Experience />
       <section id="education" className="reveal">
         <Education />
       </section>
@@ -63,7 +65,7 @@ function App() {
       <section id="contact" className="reveal">
         <Contact />
       </section>
-      <section id="footer">
+      <section id="footer" className="reveal">
         <Footer />
       </section>
     </>

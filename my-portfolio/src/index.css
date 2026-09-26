@@ -55,3 +55,261 @@ p {
     transition: none;
   }
 }
+
+:root {
+  --portfolio-ink: #493c54;
+  --portfolio-muted: #756a79;
+  --portfolio-pink: #c66b93;
+  --portfolio-lavender: #8f7cb2;
+  --portfolio-border: #f0dce7;
+  --portfolio-shadow: 0 14px 34px rgba(103, 64, 92, 0.09);
+}
+
+::selection { background: #f4d5e4; color: #593d51; }
+
+.reveal.reveal--visible { transform: none; }
+
+.projects-title,
+.education-title,
+.beyond-code-title,
+.certificates-title,
+.experience__heading h2 {
+  color: var(--portfolio-ink);
+  font-size: clamp(2.1rem, 5vw, 3.1rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+}
+
+.projects-section,
+.education,
+.certificates-section,
+.beyond-code,
+.experience {
+  background-color: #fffafd;
+}
+
+.education,
+.beyond-code { background: linear-gradient(145deg, #fffafd, #fff5f9 60%, #faf7ff); }
+
+.certificates-section {
+  --cert-bg-1: #fff6fa;
+  --cert-bg-2: #faf7ff;
+  --cert-ink: #493c54;
+  --cert-muted: #817487;
+  --cert-accent: #b45b84;
+  --cert-card: rgba(255, 255, 255, 0.92);
+  --cert-border: #f0dce7;
+  --cert-shadow: 0 14px 34px rgba(103, 64, 92, 0.09);
+}
+
+.certificate-chip {
+  border-color: #efd6e3;
+  background: #fff1f7;
+  color: #a54f79;
+}
+
+.certificate-open-btn,
+.modal-back {
+  border: 1px solid #e8cad9;
+  border-radius: 10px;
+  background: #fff1f7;
+  color: #8f496c;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 9px 12px;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.certificate-open-btn:hover,
+.modal-back:hover { transform: translateY(-1px); background: #fce4ef; }
+
+.modal-overlay { background: rgba(57, 42, 59, 0.56); backdrop-filter: blur(5px); }
+.modal-content { border-color: #f0dce7; border-radius: 20px; }
+
+.project-card,
+.education-item,
+.certificate-card,
+.beyond-code-card {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.2, 0.75, 0.25, 1);
+  animation-fill-mode: backwards;
+}
+
+.reveal--visible .project-card,
+.reveal--visible .education-item,
+.reveal--visible .certificate-card,
+.reveal--visible .beyond-code-card {
+  animation-name: section-card-enter;
+}
+
+.reveal--visible .project-card:nth-child(2),
+.reveal--visible .education-item:nth-child(2),
+.reveal--visible .certificate-card:nth-child(2),
+.reveal--visible .beyond-code-card:nth-child(2) { animation-delay: 70ms; }
+
+.reveal--visible .project-card:nth-child(3),
+.reveal--visible .education-item:nth-child(3),
+.reveal--visible .certificate-card:nth-child(3),
+.reveal--visible .beyond-code-card:nth-child(3) { animation-delay: 140ms; }
+
+.reveal--visible .project-card:nth-child(4),
+.reveal--visible .certificate-card:nth-child(4),
+.reveal--visible .beyond-code-card:nth-child(4) { animation-delay: 210ms; }
+
+.beyond-code-card {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.beyond-code-card:hover {
+  transform: translateY(-5px) rotate(-0.4deg);
+  border-color: #e8c5d8;
+  box-shadow: 0 17px 34px rgba(103, 64, 92, 0.13);
+}
+
+@keyframes section-card-enter {
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .education-item,
+  .certificate-card,
+  .beyond-code-card { animation: none !important; }
+  .beyond-code-card,
+  .certificate-open-btn,
+  .modal-back { transition: none; }
+}
+
+/* Alternating portfolio surfaces and soft lavender breathing bubbles. */
+.home,
+.cursor-character,
+.about,
+.skills,
+.projects-section,
+.experience,
+.education,
+.certificates-section,
+.beyond-code,
+.contact-wrapper,
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.home,
+.about,
+.skills,
+.projects-section,
+.education,
+.beyond-code,
+.footer {
+  background: #fdf2f7;
+}
+
+.cursor-character,
+.experience,
+.certificates-section,
+.contact-wrapper {
+  background: #fff;
+}
+
+.home::before,
+.home::after,
+.cursor-character::before,
+.cursor-character::after,
+.about::before,
+.about::after,
+.skills::before,
+.skills::after,
+.projects-section::before,
+.projects-section::after,
+.experience::before,
+.experience::after,
+.education::before,
+.education::after,
+.certificates-section::before,
+.certificates-section::after,
+.beyond-code::before,
+.beyond-code::after,
+.contact-wrapper::before,
+.contact-wrapper::after,
+.footer::before,
+.footer::after {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(190, 171, 232, 0.2) 0%, rgba(190, 171, 232, 0.11) 48%, rgba(190, 171, 232, 0) 74%);
+  content: "";
+  pointer-events: none;
+  animation: lavender-bubble 9s ease-in-out infinite;
+}
+
+.home::before,
+.cursor-character::before,
+.about::before,
+.skills::before,
+.projects-section::before,
+.experience::before,
+.education::before,
+.certificates-section::before,
+.beyond-code::before,
+.contact-wrapper::before,
+.footer::before {
+  top: 3%;
+  left: 4%;
+  width: clamp(110px, 17vw, 230px);
+  aspect-ratio: 1;
+}
+
+.home::after,
+.cursor-character::after,
+.about::after,
+.skills::after,
+.projects-section::after,
+.experience::after,
+.education::after,
+.certificates-section::after,
+.beyond-code::after,
+.contact-wrapper::after,
+.footer::after {
+  right: 5%;
+  bottom: 2%;
+  width: clamp(80px, 12vw, 165px);
+  aspect-ratio: 1;
+  animation-delay: -4.5s;
+  animation-duration: 11s;
+}
+
+@keyframes lavender-bubble {
+  0%, 100% { opacity: 0.48; transform: scale(0.72); }
+  50% { opacity: 0.9; transform: scale(1.13); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home::before,
+  .home::after,
+  .cursor-character::before,
+  .cursor-character::after,
+  .about::before,
+  .about::after,
+  .skills::before,
+  .skills::after,
+  .projects-section::before,
+  .projects-section::after,
+  .experience::before,
+  .experience::after,
+  .education::before,
+  .education::after,
+  .certificates-section::before,
+  .certificates-section::after,
+  .beyond-code::before,
+  .beyond-code::after,
+  .contact-wrapper::before,
+  .contact-wrapper::after,
+  .footer::before,
+  .footer::after { animation: none; }
+}

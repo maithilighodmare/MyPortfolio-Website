@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
 import "../styles/Contact.css";
 import Toast from "./Toast";
 
@@ -62,8 +63,27 @@ const Contact = () => {
 
   return (
     <section className="contact-wrapper">
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <h2>Contact Me</h2>
+      <div className="contact-inner">
+        <div className="contact-intro">
+          <span className="contact-eyebrow">Let’s talk</span>
+          <h2>Have a project in mind?</h2>
+          <p>I’d love to hear what you’re building, learning, or dreaming up. Send me a note and I’ll get back to you.</p>
+          <a className="contact-detail" href="mailto:ghodmaremaithili1@gmail.com">
+            <span className="contact-detail-icon"><FaEnvelope aria-hidden="true" /></span>
+            ghodmaremaithili1@gmail.com
+          </a>
+          <div className="contact-detail">
+            <span className="contact-detail-icon"><FaMapMarkerAlt aria-hidden="true" /></span>
+            Nagpur, Maharashtra
+          </div>
+          <span className="contact-note"><span aria-hidden="true">✦</span> Always open to meaningful opportunities</span>
+        </div>
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="contact-form-heading">
+            <h3>Send a message</h3>
+            <p>I’ll be in touch soon.</p>
+          </div>
 
         <label htmlFor="name">Name</label>
         <input
@@ -110,10 +130,11 @@ const Contact = () => {
         />
 
         <button type="submit" disabled={isSending}>
-          {isSending ? "Sending..." : "Send"}
+          {isSending ? "Sending..." : <>Send message <FaPaperPlane aria-hidden="true" /></>}
         </button>
         {status ? <p className="contact-status">{status}</p> : null}
-      </form>
+        </form>
+      </div>
       <Toast
         message={toast.message}
         type={toast.type}
